@@ -1,6 +1,6 @@
 {
 	"name": "vitify",
-	"description": "An unopinionated plugin to run & develop a fastify server trough vite, allowing for SSR",
+	"description": "An unopinionated plugin to run & develop a fastify server trough vite, allowing for SSR & HMR",
 	"version": "0.1.0",
 	"author": "not_existing",
 	"license": "MIT",

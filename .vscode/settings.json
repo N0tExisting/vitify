@@ -1,10 +1,12 @@
 {
 	"cSpell.words": [
+		"CODEOWNERS",
 		"configurer",
 		"fastify",
 		"middie",
 		"pino",
 		"pnpm",
+		"preinstall",
 		"unopinionated",
 		"vite",
 		"vitify",
