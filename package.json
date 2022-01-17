@@ -1,0 +1,63 @@
+{
+	"name": "vitify",
+	"description": "An unopinionated plugin to run & develop a fastify server trough vite, allowing for SSR",
+	"version": "0.1.0",
+	"author": "not_existing",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/N0tExisting/vitify.git"
+	},
+	"bugs": {
+		"url": "https://github.com/N0tExisting/vitify/issues"
+	},
+	"homepage": "https://github.com/N0tExisting/vitify#readme",
+	"keywords": [
+		"fastify",
+		"vite",
+		"SSR"
+	],
+	"type": "module",
+	"main": "dist/index.js",
+	"bin": "dist/bin.js",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"prepublishOnly": "pnpm build",
+		"build:watch": "rollup -c -w",
+		"build": "rollup -c",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"chalk": "^5.0.0",
+		"pino": "^7.6.2",
+		"yargs": "^17.3.1"
+	},
+	"peerDependencies": {
+		"fastify": "^3.0.0",
+		"middie": "^5.0.0",
+		"vite": "^2.7.0"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.5",
+		"@types/yargs": "^17.0.8",
+		"@typescript-eslint/eslint-plugin": "^5.9.0",
+		"@typescript-eslint/parser": "^5.9.0",
+		"eslint": "^8.6.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-unicorn": "^40.0.0",
+		"fastify": "^3.25.3",
+		"middie": "^5.4.0",
+		"prettier": "^2.5.1",
+		"rimraf": "^3.0.2",
+		"rollup": "^2.63.0",
+		"rollup-plugin-typescript2": "^0.31.1",
+		"typescript": "^4.5.4",
+		"vite": "^2.7.10"
+	},
+	"pnpm": {
+		"overrides": {
+			"vitify": "workspace:*"
+		}
+	}
+}

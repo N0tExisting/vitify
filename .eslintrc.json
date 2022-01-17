@@ -1,0 +1,33 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint",
+		"unicorn",
+		"prettier"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:unicorn/recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"prettier/prettier": "warn",
+		// prettier-ignore
+		"unicorn/no-keyword-prefix": ["error", {
+			"checkProperties": true,
+			"onlyCamelCase": false
+		}],
+		"unicorn/no-unused-properties": "warn",
+		"unicorn/no-unsafe-regex": "error",
+		"unicorn/custom-error-definition": "error",
+		"unicorn/prevent-abbreviations": "off",
+		// prettier-ignore
+		"unicorn/catch-error-name": ["warn", {
+			"name": "err",
+			"ignore": [
+				"^error.*$"
+			]
+		}]
+	}
+}
