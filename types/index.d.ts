@@ -26,4 +26,4 @@ export interface VitifyUserOptions {
 	app: ModuleImport;
 }
 
-export type VitifyOptions = Required<VitifyUserOptions>;
+export type VitifyResolvedOptions = Required<VitifyUserOptions>;

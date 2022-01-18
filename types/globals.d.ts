@@ -1,18 +1,5 @@
 import type { SSROptions, ViteDevServer } from 'vite';
-import { ModuleImport } from './index';
-
-export interface VitifyUserOptions {
-	/** @default 8000 */
-	port?: number;
-	/** @default true */
-	//open?: boolean;
-	/**
-	 * The module that exports the sever
-	 */
-	app: ModuleImport;
-}
-
-export type VitifyOptions = Required<VitifyUserOptions>;
+import { VitifyUserOptions, VitifyResolvedOptions } from './index';
 
 declare module 'fastify/types/instance' {
 	interface FastifyInstance {
