@@ -2,5 +2,7 @@
 /dist/
 /coverage/
 
+/Changelog.md
+
 # Prettier Fucks up the comments
 tsconfig.*json
