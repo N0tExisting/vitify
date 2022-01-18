@@ -1,6 +1,6 @@
 {
 	"name": "vitify",
-	"description": "An unopinionated plugin to run & develop a fastify server trough vite, allowing for SSR & HMR",
+	"description": "An unopinionated plugin to develop a fastify server trough vite, allowing for SSR & HMR",
 	"version": "0.1.0",
 	"author": "not_existing",
 	"license": "MIT",
@@ -19,7 +19,25 @@
 	],
 	"type": "module",
 	"main": "dist/index.js",
+	"module": "dist/index.js",
 	"bin": "dist/bin.js",
+	"types": "./types/globals.d.ts",
+	"exports": {
+		".": "./dist/index.js",
+		"./bin": "./dist/bin.js",
+		"./vite": "./dist/vite.js",
+		"./types": {
+			"types": "./types/index.d.ts",
+			"import": "./types/index.d.ts",
+			"default": "./types/index.d.ts"
+		},
+		"./globals": {
+			"types": "./types/globals.d.ts",
+			"import": "./types/globals.d.ts",
+			"default": "./types/globals.d.ts"
+		},
+		"./package.json": "./package.json"
+	},
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"prepublishOnly": "pnpm build",

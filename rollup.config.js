@@ -35,9 +35,9 @@ export default defineConfig({
 		}),
 	],
 	input: {
-		//index: 'src/index.ts',
+		index: 'src/index.ts',
 		bin: 'src/bin/index.ts',
-		//vite: 'src/vite/index.ts',
+		vite: 'src/vite/index.ts',
 		//fastify: 'src/fastify/index.ts',
 	},
 	output: {
