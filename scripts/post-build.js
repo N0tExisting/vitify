@@ -2,9 +2,12 @@
 import { join, dirname } from 'node:path';
 import * as fs from 'node:fs';
 import * as console from 'node:console';
+import * as process from 'node:process';
 import rimraf from 'rimraf';
 
-const outDir = join(dirname(import.meta.url), '..', 'dist');
+//console.log(import.meta.url, cleanProtocol(import.meta.url));
+
+const outDir = join(dirname(cleanProtocol(import.meta.url)), '..', 'dist');
 
 const files = {
 	'src/index.d.ts': 'index.d.ts',
@@ -13,9 +16,22 @@ const files = {
 };
 
 /** @param {string} path */
-function fixPath(path) {
-	if (path.startsWith('file:\\')) {
-		path = path.slice('file:\\'.length);
+function cleanProtocol(path) {
+	if (process.platform === 'win32') {
+		if (path.startsWith('file:\\')) {
+			path = path.slice('file:\\'.length);
+		} else if (path.startsWith('file:///')) {
+			path = path.slice('file:///'.length);
+			// Check if the path starts with `file:/` but not `file://`
+		}
+	} else {
+		if (path.startsWith('file:///')) {
+			path = path.slice('file://'.length);
+			// Check if the path starts with `file:/` but not `file://`
+		}
+	}
+	if (/^file:\/(?:[^/]|$)/.test(path)) {
+		path = path.slice('file:'.length);
 	}
 	return path;
 }
@@ -23,8 +39,8 @@ function fixPath(path) {
 /** @type {false | Error} */
 let error = false;
 for (const [src, dest] of Object.entries(files)) {
-	const srcPath = fixPath(join(outDir, src));
-	const destPath = fixPath(join(outDir, dest));
+	const srcPath = join(outDir, src);
+	const destPath = join(outDir, dest);
 	//console.log(`'${srcPath}' -> '${destPath}'`);
 	try {
 		fs.copyFileSync(srcPath, destPath);
