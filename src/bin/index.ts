@@ -1,3 +1,4 @@
+/// <reference types="middie" />
 import { createServer } from 'node:http';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
@@ -49,6 +50,9 @@ yargs(hideBin(process.argv))
 				const fastify = await await loadModule<ServerExport>(opts.vitify.app);
 				if (!('vite' in fastify)) {
 					fastify.decorate('vite', vite);
+					if (opts.vitify.inject) {
+						fastify.use(vite.middlewares);
+					}
 				}
 				await fastify.ready();
 				await fastify.routing(req, res);

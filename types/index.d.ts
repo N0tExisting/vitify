@@ -18,8 +18,12 @@ export type ServerExport = FastifyInstance;
 export interface VitifyUserOptions {
 	/** @default 8000 */
 	port?: number;
-	/** @default true */
-	//open?: boolean;
+	/**
+	 * Inject vite's middleware into the server
+	 * using `middie` (you need to install & register it)
+	 * @default false
+	 */
+	inject?: boolean;
 	/**
 	 * The module that exports the sever
 	 */

@@ -4,6 +4,7 @@
 		"configurer",
 		"fastify",
 		"middie",
+		"middlewares",
 		"pino",
 		"pnpm",
 		"preinstall",
