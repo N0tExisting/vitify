@@ -71,10 +71,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Publish
-      #   run: pnpm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+      - name: Publish
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
   update-release:
     needs: build
@@ -94,8 +94,18 @@ jobs:
           # Artifact name
           name: Tarball
 
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./vitify-*.tgz
+          asset_name: vitify.tgz
+
       # TODO: Rename release
-      - env:
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
-        run: |
-          echo $EVENT_CONTEXT
+      # - env:
+      #     EVENT_CONTEXT: ${{ toJSON(github.event) }}
+      #   run: |
+      #     echo $EVENT_CONTEXT
