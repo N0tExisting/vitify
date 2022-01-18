@@ -42,7 +42,7 @@
 		"preinstall": "npx only-allow pnpm",
 		"prepublishOnly": "pnpm build",
 		"build:watch": "rollup -c -w",
-		"build": "rollup -c",
+		"build": "rollup -c && node scripts/post-build.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
@@ -62,6 +62,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.5",
+		"@types/rimraf": "^3.0.2",
 		"@types/yargs": "^17.0.8",
 		"@typescript-eslint/eslint-plugin": "^5.9.0",
 		"@typescript-eslint/parser": "^5.9.0",
