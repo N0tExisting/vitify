@@ -1,0 +1,15 @@
+/coverage/
+
+*-lock.*
+
+*.tgz
+.git*
+/.dccache
+/.vscode/
+/.editorconfig
+
+/scripts/
+.prettier*
+.eslint*
+/*.config.*
+/tsconfig*.json
