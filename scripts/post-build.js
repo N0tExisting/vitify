@@ -4,6 +4,7 @@ import * as fs from 'node:fs';
 import * as console from 'node:console';
 import * as process from 'node:process';
 import rimraf from 'rimraf';
+import chalk from 'chalk';
 
 //console.log(import.meta.url, cleanProtocol(import.meta.url));
 
@@ -22,14 +23,13 @@ function cleanProtocol(path) {
 			path = path.slice('file:\\'.length);
 		} else if (path.startsWith('file:///')) {
 			path = path.slice('file:///'.length);
-			// Check if the path starts with `file:/` but not `file://`
 		}
 	} else {
 		if (path.startsWith('file:///')) {
 			path = path.slice('file://'.length);
-			// Check if the path starts with `file:/` but not `file://`
 		}
 	}
+	// Check if the path starts with `file:/` but not `file://`
 	if (/^file:\/(?:[^/]|$)/.test(path)) {
 		path = path.slice('file:'.length);
 	}
@@ -56,5 +56,5 @@ if (error) {
 	throw error;
 } else {
 	rimraf.sync(outDir);
-	console.log('Copied types');
+	console.log(chalk.magentaBright`Copied types!`);
 }
