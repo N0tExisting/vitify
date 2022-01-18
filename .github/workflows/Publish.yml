@@ -4,7 +4,7 @@ name: Publish Node.js Package
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
@@ -34,6 +34,18 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Pack
+        run: pnpm pack
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          # Artifact name
+          name: Tarball
+          # A file, directory or wildcard pattern that describes what to upload
+          path: vitify-*.tgz
+          # The desired behavior if no files are found using the provided path.
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -59,7 +71,31 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      # - name: Publish
+      #   run: pnpm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+  update-release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@69d4697a4cbb77459281496ef908153917e63cb2
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.0
+        with:
+          # Artifact name
+          name: Tarball
+
+      # TODO: Rename release
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo $EVENT_CONTEXT
